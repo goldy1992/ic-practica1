@@ -8,7 +8,6 @@ import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.Updater;
 import org.deeplearning4j.nn.conf.layers.DenseLayer;
-import org.deeplearning4j.nn.conf.layers.Layer;
 import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
@@ -37,7 +36,7 @@ import java.util.zip.GZIPInputStream;
  * 
  * @author Fernando Berzal (berzal@acm.org)
  */
-public class MNISTDatabase 
+public class ForwardFeedNeuralNetwork
 {
 	// MNIST URL
 	private static final String MNIST_URL = "http://yann.lecun.com/exdb/mnist/";
@@ -51,7 +50,7 @@ public class MNISTDatabase
 	private static final String testLabels = "t10k-labels-idx1-ubyte.gz";
 	
 	// Logger
-	protected static final Logger log = Logger.getLogger(MNISTDatabase.class.getName());
+	protected static final Logger log = Logger.getLogger(ForwardFeedNeuralNetwork.class.getName());
 	
 	// Download files
 	
@@ -116,7 +115,7 @@ public class MNISTDatabase
 
 		try {
 //			file = new FileInputStream(filename);
-			MNISTDatabase mnistDatabase = new MNISTDatabase();
+			ForwardFeedNeuralNetwork mnistDatabase = new ForwardFeedNeuralNetwork();
 			ClassLoader classLoader = mnistDatabase.getClass().getClassLoader();
 			file = new FileInputStream(classLoader.getResource(filename).getFile());
 			gzip = new GZIPInputStream(file);
@@ -173,7 +172,7 @@ public class MNISTDatabase
 		int labels[] = null;
 
 		try {
-			MNISTDatabase mnistDatabase = new MNISTDatabase();
+			ForwardFeedNeuralNetwork mnistDatabase = new ForwardFeedNeuralNetwork();
 			ClassLoader classLoader = mnistDatabase.getClass().getClassLoader();
 			file = new FileInputStream(classLoader.getResource(filename).getFile());
 			gzip = new GZIPInputStream(file);
